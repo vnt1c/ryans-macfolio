@@ -11,7 +11,9 @@
     /* Path aliases */
     "baseUrl": ".",
     "paths": {
+      "#components": ["./src/components/index"],
       "#components/*": ["./src/components/*"],
+      "#constants": ["./src/constants/index"],
       "#constants/*": ["./src/constants/*"],
       "#store/*": ["./src/store/*"],
       "#hoc/*": ["./src/hoc/*"],
