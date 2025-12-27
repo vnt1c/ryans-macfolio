@@ -3,8 +3,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const FONT_WEIGHTS = {
-  subtitle: { min: 150, max: 400, default: 150 },
-  title: {min: 400, max: 900, default: 400 },
+  subtitle: { min: 150, max: 400, base: 150 },
+  title: {min: 400, max: 900, base: 400 },
 }
 
 type FontType = keyof typeof FONT_WEIGHTS;
@@ -25,7 +25,7 @@ const setupTextHover = (container: HTMLElement | null, type: FontType) => {
   if (!container) return;
 
   const letters = container.querySelectorAll<HTMLSpanElement>("span");
-  const { min, max, default: base } = FONT_WEIGHTS[type];
+  const { min, max, base } = FONT_WEIGHTS[type];
 
   const animateLetter = (
     letter: HTMLSpanElement,
