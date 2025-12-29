@@ -492,7 +492,17 @@ export const locations = {
 
 const INITIAL_Z_INDEX = 1000;
 
-const WINDOW_CONFIG = {
+export type WindowKey = 'finder' | 'contact' | 'resume' | 'safari' | 'photos' | 'terminal' | 'txtfile' | 'imgfile';
+
+export type WindowConfig = Record<WindowKey, WindowState>;
+
+interface WindowState {
+  isOpen: boolean;
+  zIndex: number;
+  data: any;
+}
+
+const WINDOW_CONFIG: WindowConfig = {
   finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },

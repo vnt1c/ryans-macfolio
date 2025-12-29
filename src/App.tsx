@@ -1,12 +1,15 @@
 import { Navbar, Welcome, Dock } from "#components";
+import { WindowProvider } from "#context/WindowContext";
 
 const App = () => {
   return (
-    <main>
-      <Navbar />
-      <Welcome />
-      <Dock />
-    </main>
+    <WindowProvider>
+      <main>
+        <Navbar />
+        <Welcome />
+        <Dock />
+      </main>
+    </WindowProvider>
   )
 }
 

@@ -15,6 +15,8 @@
       "#components/*": ["./src/components/*"],
       "#constants": ["./src/constants/index"],
       "#constants/*": ["./src/constants/*"],
+      "#context": ["./src/context/index"],
+      "#context/*": ["./src/context/*"],
       "#store/*": ["./src/store/*"],
       "#hoc/*": ["./src/hoc/*"],
       "#windows/*": ["./src/windows/*"]
