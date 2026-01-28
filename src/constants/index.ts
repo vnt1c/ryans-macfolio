@@ -496,7 +496,7 @@ export type WindowKey = 'finder' | 'contact' | 'resume' | 'safari' | 'photos' | 
 
 export type WindowConfig = Record<WindowKey, WindowState>;
 
-interface WindowState {
+export interface WindowState {
   isOpen: boolean;
   zIndex: number;
   data: any;

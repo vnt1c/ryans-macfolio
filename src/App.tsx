@@ -1,5 +1,9 @@
 import { Navbar, Welcome, Dock } from "#components";
 import { WindowProvider } from "#context/WindowContext";
+import gsap from "gsap/dist/gsap";
+import Draggable from "gsap/dist/Draggable";
+
+gsap.registerPlugin(Draggable);
 
 const App = () => {
   return (

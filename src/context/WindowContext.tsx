@@ -13,7 +13,7 @@ interface WindowContextInterface {
 // Create the context
 const WindowContext = createContext<WindowContextInterface | undefined>(undefined);
 
-// Safety wrapper for ussing WindowContext
+// Debugging custom hook
 export const useWindowContext = () => {
     const context = useContext(WindowContext);
     if (context === undefined) {
@@ -22,24 +22,35 @@ export const useWindowContext = () => {
     return context;
 }
 
+// WindowContext Provider
 export const WindowProvider = ({ children }: { children: React.ReactNode }) => {
-    const [windows, setWindows] = useState({...WINDOW_CONFIG});
-    const [nextZIndex, setNextZIndex] = useState(INITIAL_Z_INDEX + 1);
+  const [windows, setWindows] = useState({...WINDOW_CONFIG});
+  const [nextZIndex, setNextZIndex] = useState(INITIAL_Z_INDEX + 1);
 
-    const openWindow = (windowKey: WindowKey, data = null) => {
-        setWindows((prevWindows) => ({
-            ...prevWindows,
-            [windowKey]: {
-                ...prevWindows[windowKey],
-                isOpen: true,
-                zIndex: nextZIndex,
-                data: data ?? prevWindows[windowKey].data
-            }
-        }));
-        setNextZIndex(prev => prev + 1);
-    };
+  const openWindow = (windowKey: WindowKey, data = null) => {
+    if (!windows[windowKey]) {
+      console.error(`Window "${windowKey}" does not exist`);
+      return;
+    }
 
-    const closeWindow = (windowKey: WindowKey) => {
+    setWindows((prevWindows) => ({
+      ...prevWindows,
+      [windowKey]: {
+        ...prevWindows[windowKey],
+        isOpen: true,
+        zIndex: nextZIndex,
+        data: data ?? prevWindows[windowKey].data
+      }
+    }));
+    setNextZIndex(prev => prev + 1);
+  };
+
+  const closeWindow = (windowKey: WindowKey) => {
+    if (!windows[windowKey]) {
+      console.error(`Window "${windowKey}" does not exist`);
+      return;
+    }
+
     setWindows((prevWindows) => ({
       ...prevWindows,
       [windowKey]: {
@@ -52,6 +63,11 @@ export const WindowProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const focusWindow = (windowKey: WindowKey) => {
+    if (!windows[windowKey]) {
+      console.error(`Window "${windowKey}" does not exist`);
+      return;
+    }
+
     setWindows((prevWindows) => ({
       ...prevWindows,
       [windowKey]: {
