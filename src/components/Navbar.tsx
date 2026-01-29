@@ -1,8 +1,12 @@
 import dayjs from "dayjs";
 
 import { navLinks, navIcons } from "#constants/index";
+import type { WindowKey } from "#constants/index";
+import { useWindowContext } from "#context/WindowContext";
 
 const Navbar = () => {
+  const { openWindow } = useWindowContext();
+
   return (
     <nav>
         <div>
@@ -11,7 +15,7 @@ const Navbar = () => {
 
             <ul>
                 {navLinks.map((item) => (
-                    <li key={item.id}>{item.name}</li>
+                    <li key={item.id} onClick={() => openWindow(item.type as WindowKey)}>{item.name}</li>
                 ))}
             </ul>
         </div>
